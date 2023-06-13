@@ -1,14 +1,13 @@
 # ETL de Dados sobre Exportações Airflow - Google Cloud Platform
 
-Este documento demonstra o desenvolvimento técnico do projeto de ETL de dados sobre exportações de Carnes Bovinas durante o primeiro quadrimestre de 2023 utilizando os recursos de cloud da Google (GCP) e visualização em um dashboard.
+Este documento demonstra o desenvolvimento técnico do projeto de ETL de dados sobre exportações de Carnes Bovinas durante os cincos primeiros meses de 2023 utilizando os recursos de cloud da Google (GCP)
 
-
-
-Utilizando ferramentas como Airflow, Google Cloud Storage, Dataproc, BigQuery e PowerBi.
+Utilizando ferramentas como Airflow, Google Cloud Storage, Dataproc e BigQuery.
 
 ## 🏭 Arquitetura
 
-![arquitetura-Página-2](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/5ecff81b-58da-4338-aa3c-53782612a65e)
+![arquitetura-pv2](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/a9f6ef8d-09ef-480a-926f-937d6233014c)
+
 
 
 ## ⚙️ Extração dos Dados
@@ -51,7 +50,7 @@ http://comexstat.mdic.gov.br/pt/home
 
 
 
-Para o processo de extração dos dados, utilizamos a API do site Comex Stat com o objetivo de obter informações sobre exportações de Carnes Bovinas durante o primeiro quadrimestre de 2023. Utilizamos o filtro da API para selecionar os dados de acordo com os códigos NCM (Nomenclatura Comum do Mercosul) específicos para os diferentes tipos de Carnes Bovinas.
+Para o processo de extração dos dados, utilizamos a API do site Comex Stat com o objetivo de obter informações sobre exportações de Carnes Bovinas durante os cincos primeiros meses de 2023. Utilizamos o filtro da API para selecionar os dados de acordo com os códigos NCM (Nomenclatura Comum do Mercosul) específicos para os diferentes tipos de Carnes Bovinas.
 
 A API do Comex Stat pode ser acessada através do seguinte link: http://api.comexstat.mdic.gov.br/general?filter{<>}
 
@@ -76,7 +75,8 @@ Aqui estão as descrições dos itens selecionados:
 
 Para realizar a coleta dos dados brutos, utilizamos o Apache Airflow como orquestrador. Essa tarefa é executada pela task "Coleta de Dados" e os dados coletados são enviados para a camada bronze do Google Cloud Storage por meio da task "Envio GCS".
 
-![bronze](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/e43b8959-2fe7-4be1-87d7-decb5ca257ff)
+![bronze](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/3d598728-8680-47fd-a12c-7efeae5ffc4c)
+
 
 ![printschema1](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/43c32f2f-2788-43fa-93d3-698103bf8c63)
 
@@ -92,7 +92,7 @@ A task de processamento dos dados executa um Job utilizando PySpark e SQL, utili
 
 Na etapa seguinte, é realizada a estruturação da modelagem dos dados, criando tabelas de dimensões e a tabela fato, que são então enviadas para a camada Gold do Cloud Storage.
 
-![gold](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/2819966f-3dcf-4cd6-af55-129cfa6a7fe2)
+![gold2](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/6f76e0ca-75e5-4c6f-bd21-ac1c0d4157cf)
 
 
 ![printschema3](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/3a0eef7d-b075-4212-a9f1-6e19f447d4d2)
@@ -101,20 +101,20 @@ Na etapa seguinte, é realizada a estruturação da modelagem dos dados, criando
 
 
 
-Foi criado um conjunto de dados no BigQuery para este projeto, onde armazenamos todas as informações relevantes. A imagem abaixo mostra a estrutura do conjunto de dados e as tabelas utilizadas:
+Foi criado um conjunto de dados no BigQuery para este projeto, onde armazenamos todas as informações relevantes. As imagens abaixo mostra a estrutura do conjunto de dados e as tabelas utilizadas:
 
 ![bq1](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/42ee1304-ff16-46c5-85c4-f468a5541d95)
 
-Por meio do Dashboard final desenvolvido no Power BI, é possível visualizar diversas métricas importantes. Algumas das métricas destacadas são:
 
-- Somatório dos valores de exportação em dólar.
-- Somatório do peso em quilogramas dos itens exportados.
-- Top 5 estados que mais realizaram exportações.
-- Top 5 países que mais consumiram os produtos exportados.
+![bq2](https://github.com/FernandoBarbosaB/ETL_Airflow_GCP/assets/116772002/44f05cc5-f02d-43b7-952a-291575ddb076)
 
-(imagem dashboard)
 
-O Dashboard no Power BI oferece uma visão clara e intuitiva dessas métricas, permitindo uma análise mais aprofundada dos dados e facilitando a identificação de tendências e insights relevantes para o negócio.
+
+## 🚧 Descrição dos arquivos
+
+- etl_export.py = Código Python pela DAG responsável de fazer a extração dos dados e enviar para a camada bronze
+
+- script_etl_exp_gcp.py = script responsável pelo tratamento dos dados
 
 ## 🛠️ Construído com
 
@@ -123,7 +123,7 @@ O Dashboard no Power BI oferece uma visão clara e intuitiva dessas métricas, p
 * [Google Cloud Storage](https://cloud.google.com/storage?hl=pt-br) - Seriço de Armazenamento de arquivos online da Google
 * [Dataproc](https://cloud.google.com/dataproc?hl=pt-br) - Serviço gerenciado de processamento distribuido de Big Data com Spark
 * [BigQuery](https://cloud.google.com/bigquery?hl=pt-br) - Data Warehouse em nuvem da Google
-* [Power Bi](https://powerbi.microsoft.com/pt-br/) - Ferramenta de Visualização de Dados
+
 
 * [Comex Stat](http://comexstat.mdic.gov.br/pt/home) - Portal para acesso gratuito às estatísticas de comércio exterior do Brasil
 
