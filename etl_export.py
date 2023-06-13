@@ -36,17 +36,6 @@ location = ''
 py_spark_notebook = Variable.get('py_spark_notebook')
 
 
-# bucket = 'fernando-barbosa'
-# cluster = 'cluster-fernando-2'
-# regiao = 'us-central1'
-# location = ''
-# py_spark_notebook = r'gs://fernando-barbosa/scripts/script_etl_exp_quad.py'
-
-
-
-
-
-
 def get_dados():
 
     url_quad_2023 = r'http://api.comexstat.mdic.gov.br/general?filter=%7B%22yearStart%22:%222023%22,%22yearEnd%22:%222023%22,%22typeForm%22:1,%22typeOrder%22:2,%22filterList%22:%5B%7B%22id%22:%22noPaispt%22,%22text%22:%22Pa%C3%ADs%22,%22route%22:%22/pt/location/countries%22,%22type%22:%221%22,%22group%22:%22gerais%22,%22groupText%22:%22Gerais%22,%22hint%22:%22fieldsForm.general.noPais.description%22,%22placeholder%22:%22Pa%C3%ADses%22%7D,%7B%22id%22:%22noUf%22,%22text%22:%22UF%20do%20Produto%22,%22route%22:%22/pt/location/states%22,%22type%22:%221%22,%22group%22:%22gerais%22,%22groupText%22:%22Gerais%22,%22hint%22:%22fieldsForm.general.noUf.description%22,%22placeholder%22:%22UFs%20do%20Produto%22%7D,%7B%22id%22:%22noNcmpt%22,%22text%22:%22NCM%20-%20Nomenclatura%20Comum%20do%20Mercosul%22,%22route%22:%22/pt/product/ncm%22,%22type%22:%222%22,%22group%22:%22sh%22,%22groupText%22:%22Sistema%20Harmonizado%20(SH)%22,%22hint%22:%22fieldsForm.general.noNcm.description%22,%22placeholder%22:%22NCM%22%7D,%7B%22id%22:%22noUrf%22,%22text%22:%22URF%22,%22route%22:%22/pt/location/urf%22,%22type%22:%221%22,%22group%22:%22gerais%22,%22groupText%22:%22Gerais%22,%22hint%22:%22fieldsForm.general.noUrf.description%22,%22placeholder%22:%22URFs%22%7D,%7B%22id%22:%22noVia%22,%22text%22:%22Via%22,%22route%22:%22/pt/location/via%22,%22type%22:%221%22,%22group%22:%22gerais%22,%22groupText%22:%22Gerais%22,%22hint%22:%22fieldsForm.general.noVia.description%22,%22placeholder%22:%22Vias%22%7D,%7B%22id%22:%22noBlocopt%22,%22text%22:%22Bloco%20Econ%C3%B4mico%22,%22route%22:%22/pt/location/blocks%22,%22type%22:%221%22,%22group%22:%22gerais%22,%22groupText%22:%22Gerais%22,%22hint%22:%22fieldsForm.general.noBloco.description%22,%22placeholder%22:%22Blocos%20Econ%C3%B4micos%22%7D%5D,%22filterArray%22:%5B%7B%22item%22:%5B%5D,%22idInput%22:%22noPaispt%22%7D,%7B%22item%22:%5B%5D,%22idInput%22:%22noUf%22%7D,%7B%22item%22:%5B%2202011000%22,%2202012010%22,%2202012020%22,%2202012090%22,%2202013000%22,%2202021000%22,%2202022010%22,%2202022020%22,%2202022090%22,%2202023000%22,%2202061000%22,%2202062100%22,%2202062200%22,%2202062910%22,%2202062990%22%5D,%22idInput%22:%22noNcmpt%22%7D,%7B%22item%22:%5B%5D,%22idInput%22:%22noUrf%22%7D,%7B%22item%22:%5B%5D,%22idInput%22:%22noVia%22%7D,%7B%22item%22:%5B%5D,%22idInput%22:%22noBlocopt%22%7D%5D,%22rangeFilter%22:%5B%5D,%22detailDatabase%22:%5B%7B%22id%22:%22noPaispt%22,%22text%22:%22Pa%C3%ADs%22%7D,%7B%22id%22:%22noUf%22,%22text%22:%22UF%20do%20Produto%22%7D,%7B%22id%22:%22noNcmpt%22,%22text%22:%22NCM%20-%20Nomenclatura%20Comum%20do%20Mercosul%22,%22parentId%22:%22coNcm%22,%22parent%22:%22C%C3%B3digo%20NCM%22%7D,%7B%22id%22:%22noUrf%22,%22text%22:%22URF%22%7D,%7B%22id%22:%22noVia%22,%22text%22:%22Via%22%7D,%7B%22id%22:%22noBlocopt%22,%22text%22:%22Bloco%20Econ%C3%B4mico%22%7D%5D,%22monthDetail%22:true,%22metricFOB%22:true,%22metricKG%22:true,%22metricStatistic%22:false,%22monthStart%22:%2201%22,%22monthEnd%22:%2212%22,%22formQueue%22:%22general%22,%22langDefault%22:%22pt%22,%22monthStartName%22:%22Janeiro%22,%22monthEndName%22:%22Dezembro%22%7D'
